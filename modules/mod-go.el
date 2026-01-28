@@ -38,11 +38,16 @@
   (defun llmacs/go-mode-setup ()
     "Setup for Go buffers."
     (setq-local tab-width 4)
-    ;; Format and organize imports on save
-    (add-hook 'before-save-hook #'eglot-format-buffer nil t)
-    (add-hook 'before-save-hook
-              (lambda () (call-interactively #'eglot-code-action-organize-imports))
-              nil t))
+    ;; Format and organize imports on save (only when eglot is active)
+    (add-hook 'before-save-hook #'llmacs/go-format-buffer nil t))
+
+  (defun llmacs/go-format-buffer ()
+    "Format Go buffer and organize imports via eglot."
+    (when (and (eglot-managed-p)
+               (eglot-current-server))
+      (ignore-errors
+        (eglot-code-action-organize-imports nil))
+      (eglot-format-buffer)))
 
   ;; Test commands
   (defun llmacs/go-test-current ()
