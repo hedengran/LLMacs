@@ -1,0 +1,26 @@
+# Package manager (straight.el rebuilds from lockfile)
+straight/build/
+straight/repos/
+straight/build-cache.el
+straight/modified/
+
+# Keep lockfile for reproducibility
+!straight/versions/
+
+# Native compilation cache
+eln-cache/
+
+# Emacs generated
+auto-save-list/
+projects
+history
+recentf
+savehist
+places
+*.elc
+*~
+\#*\#
+.\#*
+
+# OS
+.DS_Store
