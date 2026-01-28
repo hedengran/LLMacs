@@ -59,6 +59,7 @@
   "Setup keys for temporary/special buffers."
   (when (derived-mode-p 'special-mode)
     (evil-local-set-key 'normal (kbd "q") #'quit-window)
+    (evil-local-set-key 'normal (kbd "C-g") #'quit-window)
     (evil-local-set-key 'normal (kbd "C-n") #'next-line)
     (evil-local-set-key 'normal (kbd "C-p") #'previous-line)))
 
@@ -70,6 +71,7 @@
 (with-eval-after-load 'xref
   (evil-define-key 'normal xref--xref-buffer-mode-map
     (kbd "q") #'quit-window
+    (kbd "C-g") #'quit-window
     (kbd "C-n") #'xref-next-line
     (kbd "C-p") #'xref-prev-line
     (kbd "RET") #'xref-goto-xref
@@ -79,6 +81,7 @@
 (with-eval-after-load 'compile
   (evil-define-key 'normal compilation-mode-map
     (kbd "q") #'quit-window
+    (kbd "C-g") #'quit-window
     (kbd "C-n") #'compilation-next-error
     (kbd "C-p") #'compilation-previous-error
     (kbd "RET") #'compile-goto-error))
