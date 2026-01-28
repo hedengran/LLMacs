@@ -21,6 +21,7 @@
     "gd" '(xref-find-definitions :wk "definition")
     "gr" '(xref-find-references :wk "references")
     "gi" '(eglot-find-implementation :wk "implementation")
+    "gt" '(eglot-find-typeDefinition :wk "type definition")
 
     "r" '(:ignore t :wk "refactor")
     "rr" '(eglot-rename :wk "rename")
@@ -90,7 +91,9 @@
   :config
   (setq eglot-autoshutdown t  ; Shutdown LSP when last buffer closed
         eglot-events-buffer-size 0  ; Disable event logging for performance
-        eglot-sync-connect nil))  ; Don't block on LSP connect
+        eglot-sync-connect nil)  ; Don't block on LSP connect
+  ;; Jump directly when single result, show completing-read for multiple
+  (setq xref-show-definitions-function #'xref-show-definitions-completing-read))
 
 ;; Add eglot to evil-collection
 (with-eval-after-load 'evil-collection
