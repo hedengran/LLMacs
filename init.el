@@ -40,6 +40,7 @@
 
 ;; Load feature modules
 (require 'mod-project)      ; Project management (built-in project.el)
+(require 'mod-files)        ; File management (dirvish)
 (require 'mod-git)          ; Git via magit
 (require 'mod-go)           ; Go language support
 (require 'mod-llm)          ; LLM and agent integration
