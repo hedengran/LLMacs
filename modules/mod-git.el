@@ -27,6 +27,10 @@
   :hook ((prog-mode . diff-hl-mode)
          (magit-pre-refresh . diff-hl-magit-pre-refresh)
          (magit-post-refresh . diff-hl-magit-post-refresh))
+  :general
+  (:states 'normal
+   "]h" '(diff-hl-next-hunk :wk "next hunk")
+   "[h" '(diff-hl-previous-hunk :wk "prev hunk"))
   :config
   (setq diff-hl-draw-borders nil))
 
