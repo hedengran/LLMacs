@@ -99,9 +99,17 @@
 
 ;; Reload config
 (defun llmacs/reload-config ()
-  "Reload Emacs configuration."
+  "Reload Emacs configuration by re-evaluating all module files."
   (interactive)
-  (load-file (expand-file-name "init.el" user-emacs-directory))
+  (let ((lisp-dir (expand-file-name "lisp" user-emacs-directory))
+        (modules-dir (expand-file-name "modules" user-emacs-directory)))
+    ;; Reload core modules
+    (dolist (file '("core-packages" "core-ui" "core-editor" "core-evil"
+                    "core-keybindings" "core-completion"))
+      (load-file (expand-file-name (concat file ".el") lisp-dir)))
+    ;; Reload feature modules
+    (dolist (file (directory-files modules-dir nil "^mod-.*\\.el$"))
+      (load-file (expand-file-name file modules-dir))))
   (message "Config reloaded."))
 
 ;; Make with target completion
