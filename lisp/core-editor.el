@@ -5,6 +5,13 @@
 
 ;;; Code:
 
+;; Inherit environment variables from shell (macOS GUI Emacs)
+(use-package exec-path-from-shell
+  :if (memq window-system '(mac ns x))
+  :hook (after-init . exec-path-from-shell-initialize)
+  :config
+  (setq exec-path-from-shell-warn-duration-millis 500))
+
 ;; UTF-8 everywhere
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)

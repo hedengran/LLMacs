@@ -73,6 +73,7 @@
     "hk" '(describe-key :wk "key")
     "hm" '(describe-mode :wk "mode")
     "hp" '(describe-package :wk "package")
+    "hr" '(llmacs/reload-config :wk "reload config")
 
     ;; Toggle
     "t" '(:ignore t :wk "toggle")
@@ -95,6 +96,13 @@
               minibuffer-local-must-match-map
               minibuffer-local-isearch-map)
    [escape] 'keyboard-escape-quit))
+
+;; Reload config
+(defun llmacs/reload-config ()
+  "Reload Emacs configuration."
+  (interactive)
+  (load-file (expand-file-name "init.el" user-emacs-directory))
+  (message "Config reloaded."))
 
 ;; Make with target completion
 (defun llmacs/makefile-targets ()

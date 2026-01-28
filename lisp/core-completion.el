@@ -14,13 +14,19 @@
         vertico-resize nil
         vertico-cycle t))
 
-;; Orderless - flexible matching
+;; Orderless - flexible matching (space-delimited fuzzy filtering)
 (use-package orderless
-  :after vertico
+  :demand t
   :config
   (setq completion-styles '(orderless basic)
         completion-category-defaults nil
-        completion-category-overrides '((file (styles partial-completion)))))
+        completion-category-overrides nil
+        ;; Allow space-separated patterns
+        orderless-component-separator #'orderless-escapable-split-on-space
+        ;; Match styles: literal, regexp, flex, initialism
+        orderless-matching-styles '(orderless-literal
+                                    orderless-regexp
+                                    orderless-flex)))
 
 ;; Marginalia - annotations in minibuffer
 (use-package marginalia

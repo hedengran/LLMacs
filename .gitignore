@@ -12,6 +12,7 @@ eln-cache/
 
 # Emacs generated
 auto-save-list/
+transient/
 projects
 history
 recentf

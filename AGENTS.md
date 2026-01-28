@@ -14,6 +14,10 @@ LLMacs is a minimal, fast-loading Emacs configuration built on these principles:
 6. **Spacemacs-style** - SPC leader key for discoverability
 7. **Modular** - Split into logical files in `lisp/`
 
+## Workflow
+
+- **Commit each contained change** - After completing a self-contained feature or fix, create a commit. Don't batch unrelated changes together.
+
 ## Directory Structure
 
 ```
