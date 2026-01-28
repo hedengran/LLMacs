@@ -42,6 +42,7 @@
 (require 'mod-project)      ; Project management (built-in project.el)
 (require 'mod-git)          ; Git via magit
 (require 'mod-go)           ; Go language support
+(require 'mod-llm)          ; LLM and agent integration
 
 (provide 'init)
 ;;; init.el ends here
