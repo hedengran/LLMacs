@@ -32,6 +32,16 @@
       scroll-preserve-screen-position t
       auto-window-vscroll nil)
 
+;; Horizontal scrolling
+(setq hscroll-margin 5
+      hscroll-step 1)
+(setq mouse-wheel-tilt-scroll t           ; Enable horizontal mouse wheel
+      mouse-wheel-flip-direction nil)
+
+;; Pixel-precise smooth scrolling (Emacs 29+)
+(when (fboundp 'pixel-scroll-precision-mode)
+  (pixel-scroll-precision-mode 1))
+
 ;; Files and backups
 (setq auto-save-default nil               ; No #autosave# files
       make-backup-files nil               ; No backup~ files

@@ -88,12 +88,27 @@
 (use-package eglot
   :straight nil  ; Built-in since Emacs 29
   :commands eglot-ensure
+  :general
+  (llmacs/leader-keys
+    :keymaps 'eglot-mode-map
+    "cR" '(llmacs/eglot-reconnect :wk "reconnect LSP"))
   :config
   (setq eglot-autoshutdown t  ; Shutdown LSP when last buffer closed
         eglot-events-buffer-size 0  ; Disable event logging for performance
         eglot-sync-connect nil)  ; Don't block on LSP connect
   ;; Jump directly when single result, show completing-read for multiple
-  (setq xref-show-definitions-function #'xref-show-definitions-completing-read))
+  (setq xref-show-definitions-function #'xref-show-definitions-completing-read)
+
+  ;; Configure gopls to fully scan workspace including deeply nested dirs
+  (setq-default eglot-workspace-configuration
+                '(:gopls (:expandWorkspaceToModule t)))
+
+  (defun llmacs/eglot-reconnect ()
+    "Reconnect eglot to rescan workspace."
+    (interactive)
+    (when (eglot-current-server)
+      (eglot-shutdown (eglot-current-server)))
+    (call-interactively #'eglot)))
 
 ;; Add eglot to evil-collection
 (with-eval-after-load 'evil-collection
