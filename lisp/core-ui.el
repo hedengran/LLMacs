@@ -48,6 +48,17 @@
                 mode-line-misc-info
                 mode-line-end-spaces))
 
+;; Show relative file path in header line
+(defun llmacs/header-line-path ()
+  "Return the file path relative to the project root, or buffer name."
+  (if-let ((file (buffer-file-name)))
+      (let ((root (or (and (project-current) (project-root (project-current)))
+                      default-directory)))
+        (file-relative-name file root))
+    (buffer-name)))
+
+(setq-default header-line-format '(:eval (llmacs/header-line-path)))
+
 ;; Font (set if available)
 (when (display-graphic-p)
   (when (member "JetBrains Mono" (font-family-list))
