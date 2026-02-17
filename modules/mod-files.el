@@ -14,11 +14,13 @@
     "ft" '(dirvish-side :wk "sidebar toggle")
     "fT" '(llmacs/dirvish-side-find-file :wk "find file in tree"))
   :config
-  (setq dirvish-attributes '(file-size collapse subtree-state)
+  (setq dirvish-attributes '(file-size subtree-state)
         dirvish-mode-line-format '(:left (sort symlink) :right (yank index))
         dirvish-side-width 35
         dirvish-side-window-parameters '((no-delete-other-windows . t)))
-  (evil-define-key 'normal dirvish-mode-map (kbd "TAB") #'dirvish-subtree-toggle)
+  (evil-define-key 'normal dirvish-mode-map
+    (kbd "TAB") #'dirvish-subtree-toggle
+    "q" #'dirvish-quit)
   ;; Allow side window to be resized
   (advice-add 'dirvish-side--new :after
               (lambda (&rest _)
