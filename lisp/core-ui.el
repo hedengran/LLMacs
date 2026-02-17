@@ -27,26 +27,36 @@
 (setq show-paren-delay 0)
 (show-paren-mode 1)
 
+;; Show column number in mode line
+(column-number-mode 1)
+
 ;; Cursor and visual feedback
 (setq-default cursor-type 'bar)
 (blink-cursor-mode -1)
 (setq visible-bell t)
 (setq ring-bell-function 'ignore)
 
-;; Mode line (built-in, minimal)
-(setq-default mode-line-format
-              '("%e"
-                mode-line-front-space
-                mode-line-mule-info
-                mode-line-modified
-                " "
-                mode-line-buffer-identification
-                " "
-                mode-line-position
-                " "
-                mode-line-modes
-                mode-line-misc-info
-                mode-line-end-spaces))
+;; Mode line - doom-modeline for a clean, modern look
+(use-package doom-modeline
+  :hook (after-init . doom-modeline-mode)
+  :config
+  (setq doom-modeline-height 28
+        doom-modeline-bar-width 4
+        doom-modeline-icon t
+        doom-modeline-major-mode-icon t
+        doom-modeline-buffer-file-name-style 'relative-from-project
+        doom-modeline-minor-modes nil
+        doom-modeline-buffer-encoding nil
+        doom-modeline-indent-info nil
+        doom-modeline-env-version nil
+        doom-modeline-modal-icon nil
+        doom-modeline-modal nil
+        doom-modeline-column-zero-based nil
+        doom-modeline-vcs-max-length 50))
+
+;; Icons for doom-modeline
+(use-package nerd-icons
+  :demand t)
 
 ;; Breadcrumb - show symbol path in header line (uses eglot/imenu)
 (use-package breadcrumb
