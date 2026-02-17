@@ -44,6 +44,7 @@
 (require 'mod-git)          ; Git via magit
 (require 'mod-go)           ; Go language support
 (require 'mod-llm)          ; LLM and agent integration
+(require 'mod-tmux)         ; Seamless Emacs-tmux navigation
 
 (provide 'init)
 ;;; init.el ends here
